@@ -1,0 +1,38 @@
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+    "name":"tran trung nghia",
+    "email":"tr.trungnghia2001@gmail.com",
+    "password":"trantrungnghia"
+}
+###
+POST http://localhost:8000/api/auth/signin
+Content-Type: application/json
+
+{
+    "email":"tr.trungnghia2001@gmail.com",
+    "password":"tr.trungnghia2001@gmail.com"
+}
+###
+POST http://localhost:5000/api/auth/forgot-password
+Content-Type: application/json
+
+{
+    "email":"tr.trungnghia2001@gmail.com"
+}
+###
+POST http://localhost:5000/api/auth/reset-password/147dd2e4806f6b25d8f552467485a6307ab8b637a55829564eab2df8722cd26b
+Content-Type: application/json
+
+{
+    "password":"tr.trungnghia2001@gmail.com"
+}
+###
+POST http://localhost:8000/api/auth/update-frofile
+Content-Type: application/json
+# Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MDI4N2QyYmM0ODkzNWZiN2FhMDE5YSIsImVtYWlsIjoidHIudHJ1bmduZ2hpYTIwMDFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTE0NTU4NzUsImV4cCI6MTcxMTU0MjI3NX0.m-NYXekx6csbcX4zkQtVR25XHxYW3R_-D7qkXn11YRM
+
+{
+    "avatar":"tr.trungnghia2001@gmail.com"
+}

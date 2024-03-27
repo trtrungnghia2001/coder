@@ -1,0 +1,28 @@
+GET http://localhost:5000/api/crud_mongodb/get-all?q=1
+###
+GET http://localhost:5000/api/crud_mongodb/get-id/6602539217cd8980611bb1b5
+###
+POST http://localhost:5000/api/crud_mongodb/create/
+Content-Type: application/json
+
+{
+    "title":"title2"
+}
+###
+POST http://localhost:5000/api/crud_mongodb/create-all
+Content-Type: application/json
+###
+PUT http://localhost:5000/api/crud_mongodb/update-id/6602539217cd8980611bb1b5
+Content-Type: application/json
+
+{
+    "title":"title11"
+}
+###
+###
+PUT http://localhost:5000/api/crud_mongodb/update-all/
+Content-Type: application/json
+###
+DELETE  http://localhost:5000/api/crud_mongodb/delete-id/6602539217cd8980611bb1b5
+###
+DELETE  http://localhost:5000/api/crud_mongodb/delete-all
