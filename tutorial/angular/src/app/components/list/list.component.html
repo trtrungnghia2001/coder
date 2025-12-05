@@ -1,0 +1,14 @@
+<div class="space-y-6">
+  <app-form></app-form>
+  <p *ngIf="service.isLoading; else result">Loading...</p>
+  <ng-template #result
+    ><ul class="space-y-3">
+      <li *ngFor="let item of service.data">
+        <app-item
+          [data]="item"
+          (deleteEvent)="handleDelete($event)"
+          (editEvent)="handleEdit($event)"
+        ></app-item>
+      </li></ul
+  ></ng-template>
+</div>

@@ -1,0 +1,18 @@
+<div class="p-3 rounded-lg border border-gray-300 space-y-3">
+  <h5 class="font-medium text-base">{{ data.id }}. {{ data.title }}</h5>
+  <p class="text-sm">{{ data.body }}</p>
+  <div class="text-sm space-x-3">
+    <button
+      (click)="onEditClick()"
+      class="bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-lg cursor-pointer text-white leading-none"
+    >
+      Update
+    </button>
+    <button
+      (click)="onDeleteClick()"
+      class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded-lg cursor-pointer text-white leading-none"
+    >
+      Delete
+    </button>
+  </div>
+</div>

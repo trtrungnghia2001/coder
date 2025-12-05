@@ -1,0 +1,44 @@
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./s-nodejs
+    ports:
+      - "5000:5000"
+    volumes:
+    - ./s-nodejs:/app
+    - /app/node_modules
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/docker
+    depends_on:
+      - mongo
+
+  react:
+    build: ./f-react
+    container_name: react
+    ports:
+      - "5173:5173"
+    volumes:
+    - ./f-react:/app
+    - /app/node_modules
+    depends_on:
+      - backend
+
+  angular:
+    build: ./f-angular
+    container_name: angular
+    ports:
+      - "4200:4200"
+    volumes:
+    - ./f-angular:/app
+    - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:

@@ -1,0 +1,66 @@
+POST http://localhost:5000/api/auth/signup
+Content-Type: application/json
+
+{
+    "name":"Trung Nghia",
+    "email":"tr.trungnghia2001@gmail.com",
+    "password":"Nghi@123456",
+    "confirmPassword":"Nghi@123456"
+}
+
+###
+POST http://localhost:5000/api/auth/signin
+Content-Type: application/json
+
+{
+    "email":"tr.trungnghia2001@gmail.com",
+    "password":"Nghi@123456"
+}
+
+###
+POST http://localhost:5000/api/auth/signout
+Content-Type: application/json
+
+###
+GET http://localhost:5000/api/auth/get-me
+Content-Type: application/json
+
+###
+PUT http://localhost:5000/api/auth/update-me
+Content-Type: application/json
+
+{
+    "phoneNumber": "0123456789",
+    "address": "Hai Phong, Viet Nam"
+}
+
+###
+PUT http://localhost:5000/api/auth/change-password
+Content-Type: application/json
+
+{
+    "password":"Nghi@123456",
+    "confirmPassword":"Nghi@123456"
+}
+
+###
+POST http://localhost:5000/api/auth/refresh-token
+Content-Type: application/json
+
+###
+POST http://localhost:5000/api/auth/forgot-password
+Content-Type: application/json
+
+{
+    "email":"tr.trungnghia2001@gmail.com"
+}
+
+###
+POST http://localhost:5000/api/auth/reset-password
+Content-Type: application/json
+
+{
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2OTJlYjExZDg4YzYwOGUyMjUwYzAzMDIiLCJlbWFpbCI6InRyLnRydW5nbmdoaWEyMDAxQGdtYWlsLmNvbSIsImlhdCI6MTc2NDY2OTYxNiwiZXhwIjoxNzY0NjcxNDE2fQ.7KzkXiOrz3mBHqajFiywIJHp1rwwvVOg5wUM_V_yNJA",
+    "password":"Nghi@123456",
+    "confirmPassword":"Nghi@123456"
+}
