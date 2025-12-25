@@ -47,9 +47,11 @@ app.use(passport.session())
 app.use(`/api/auth`, authRouter)
 app.use(`/api/product`, productRoute)
 
-app.listen(envConfig.PORT, function () {
-  console.log(`Server running on port:: `, envConfig.PORT)
-})
+if (!envConfig.IS_PRODUCTION) {
+  app.listen(envConfig.PORT, function () {
+    console.log(`Server running on port:: `, envConfig.PORT)
+  })
+}
 
 app.use((err, req, res, next) => {
   const status = err.status || 500
@@ -63,3 +65,5 @@ app.use((err, req, res, next) => {
     success: false,
   })
 })
+
+export default app
