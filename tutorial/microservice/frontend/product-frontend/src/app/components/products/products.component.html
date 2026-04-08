@@ -1,0 +1,160 @@
+<div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-xl">
+  <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">
+    Thêm Sản Phẩm Mới
+  </h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="create()" class="space-y-4">
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700 mb-1"
+        >Tên sản phẩm</label
+      >
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        placeholder="Nhập tên sản phẩm"
+        [ngClass]="{
+          'border-red-500':
+            productForm.get('name')?.invalid && productForm.get('name')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          productForm.get('name')?.invalid && productForm.get('name')?.touched
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        <div *ngIf="productForm.get('name')?.errors?.['required']">
+          Tên sản phẩm là bắt buộc.
+        </div>
+        <div *ngIf="productForm.get('name')?.errors?.['minlength']">
+          Tên sản phẩm phải có ít nhất 3 ký tự.
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label
+        for="description"
+        class="block text-sm font-medium text-gray-700 mb-1"
+        >Mô tả sản phẩm</label
+      >
+      <textarea
+        id="description"
+        formControlName="description"
+        rows="4"
+        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        placeholder="Nhập mô tả sản phẩm"
+        [ngClass]="{
+          'border-red-500':
+            productForm.get('description')?.invalid &&
+            productForm.get('description')?.touched
+        }"
+      ></textarea>
+      <div
+        *ngIf="
+          productForm.get('description')?.invalid &&
+          productForm.get('description')?.touched
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        <div *ngIf="productForm.get('description')?.errors?.['required']">
+          Mô tả sản phẩm là bắt buộc.
+        </div>
+        <div *ngIf="productForm.get('description')?.errors?.['minlength']">
+          Mô tả phải có ít nhất 10 ký tự.
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <label for="price" class="block text-sm font-medium text-gray-700 mb-1"
+        >Giá sản phẩm</label
+      >
+      <input
+        type="number"
+        id="price"
+        formControlName="price"
+        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        placeholder="Nhập giá sản phẩm"
+        [ngClass]="{
+          'border-red-500':
+            productForm.get('price')?.invalid &&
+            productForm.get('price')?.touched
+        }"
+      />
+      <div
+        *ngIf="
+          productForm.get('price')?.invalid && productForm.get('price')?.touched
+        "
+        class="text-red-500 text-xs mt-1"
+      >
+        <div *ngIf="productForm.get('price')?.errors?.['required']">
+          Giá sản phẩm là bắt buộc.
+        </div>
+        <div *ngIf="productForm.get('price')?.errors?.['min']">
+          Giá sản phẩm phải lớn hơn 0.
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      [disabled]="productForm.invalid"
+      class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md transition-colors duration-200"
+      [ngClass]="{ 'opacity-50 cursor-not-allowed': productForm.invalid }"
+    >
+      Thêm Sản Phẩm
+    </button>
+  </form>
+</div>
+
+<p *ngIf="isLoading; else result">Loading...</p>
+
+<ng-template #result>
+  <ul
+    class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+  >
+    <li *ngFor="let product of dataList">
+      <div
+        class="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white transform transition-transform duration-300 hover:scale-105"
+      >
+        <img
+          class="w-full h-48 object-cover"
+          src="https://via.placeholder.com/600x400/CCCCCC/888888?text=Product+Image"
+          alt="Product Image"
+        />
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2 text-gray-800">
+            {{ product.name }}
+          </div>
+          <p class="text-gray-700 text-base line-clamp-3">
+            {{ product.description }}
+          </p>
+        </div>
+        <div class="px-6">
+          <span
+            class="inline-block bg-blue-100 text-blue-800 text-lg font-bold px-3 py-1 rounded-full"
+          >
+            {{ product.price | currency : "USD" }}
+          </span>
+        </div>
+        <div class="px-6 pt-4 pb-2 flex justify-between items-center">
+          <button
+            (click)="delete(product._id)"
+            class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200"
+          >
+            Delete
+          </button>
+          <button
+            (click)="favorite(product._id)"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-200"
+          >
+            {{product.isFavorite? `Un Favorite`:`Favorite`}}
+          </button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</ng-template>

@@ -1,0 +1,51 @@
+<form
+  [formGroup]="postForm"
+  (ngSubmit)="onSubmit()"
+  class="flex flex-col gap-3"
+>
+  <div>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      formControlName="title"
+      placeholder="Title"
+      class="border border-gray-300 p-3 rounded-lg w-full"
+    />
+    <div
+      class="text-red-500"
+      *ngIf="postForm.get('title')?.touched && postForm.get('title')?.invalid"
+    >
+      <div *ngIf="postForm.get('title')?.errors?.['required']">
+        Title is required.
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <textarea
+      id="body"
+      name="body"
+      formControlName="body"
+      placeholder="Body"
+      class="border border-gray-300 p-3 rounded-lg w-full"
+    ></textarea>
+    <div
+      class="text-red-500"
+      *ngIf="postForm.get('body')?.touched && postForm.get('body')?.invalid"
+    >
+      <div *ngIf="postForm.get('body')?.errors?.['required']">
+        Body is required.
+      </div>
+    </div>
+  </div>
+  <button
+    type="submit"
+    [disabled]="!postForm.valid"
+    [ngClass]="{
+      'bg-blue-500 text-white px-3 py-2 rounded-lg':true,
+      'opacity-50': !postForm.valid, }"
+  >
+    Submit
+  </button>
+</form>
